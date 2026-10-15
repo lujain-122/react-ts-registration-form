@@ -42,9 +42,11 @@ function App() {
   const [success, setSuccess] = useState(false)
 
   const handleChange = (field: keyof FormData, value: string) => {
+    const numericValue = value.replace(/\D/g, '')
+  
     const updatedForm = {
       ...form,
-      [field]: value,
+      [field]: numericValue,
     }
 
     setForm(updatedForm)
