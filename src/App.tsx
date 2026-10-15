@@ -43,7 +43,7 @@ function App() {
 
   const handleChange = (field: keyof FormData, value: string) => {
     const numericValue = value.replace(/\D/g, '')
-  
+
     const updatedForm = {
       ...form,
       [field]: numericValue,
@@ -102,6 +102,10 @@ function App() {
     setSuccess(true)
   }
 
+  const isFormValid =
+    nationalIdRegex.test(form.nationalId) &&
+    phoneRegex.test(form.phone)
+
   return (
     <div className="page">
       <div className="form-card">
@@ -152,7 +156,12 @@ function App() {
             )}
           </div>
 
-          <button type="submit">Submit</button>
+          <button
+            type="submit"
+            disabled={!isFormValid}
+          >
+            Submit
+          </button>
 
           {success && (
             <div className="success">
